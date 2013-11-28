@@ -1,0 +1,4 @@
+#dit is een file waarin je bestandstypen of hele mappen door git kunt laten negeren. met een hashtag kun je commentaar in je gitignore file zetten
+
+**/bin/**
+**/obj/**
