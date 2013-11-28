@@ -16,17 +16,26 @@ namespace PyramidPanic
         //fields
 
         //constructors
+        public MenuScene()
+        {
 
+        }
         //initialize
-        protected void Initialize()
+        public void Initialize()
         {
 
         }
         //LoadContent
+        public void LoadContent()
+        {
+        }
         //update
+        public void Update()
+        {
 
+        }
         //draw methode
-        protected void Draw()
+        public void Draw()
         {
         }
     }
