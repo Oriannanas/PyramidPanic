@@ -14,29 +14,30 @@ namespace PyramidPanic
     class MenuScene
     {
         //fields
-
+        private PyramidPanic game;
         //constructors
-        public MenuScene()
+        public MenuScene(PyramidPanic game)
         {
-
+            this.game = game;
+            this.Initialize();
         }
         //initialize
         public void Initialize()
         {
-
+            this.LoadContent();
         }
         //LoadContent
         public void LoadContent()
         {
-
+            
         }
         //update
-        public void Update()
+        public void Update(GameTime gameTime)
         {
 
         }
         //draw methode
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime)
         {
             spriteBatch.Draw(Content.Load<Texture2D>("./Background/background"), new Rectangle(0, 0, 640, 480), Color.White);
         }
