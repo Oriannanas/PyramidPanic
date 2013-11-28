@@ -11,12 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace PyramidPanic
 {
-    class MenuScene
+    class PlayScene
     {
         //fields
-
+        private Texture2D textureMenneke;
+        private Menneke menneke;
         //constructors
-        public MenuScene()
+        public PlayScene()
         {
 
         }
@@ -28,17 +29,19 @@ namespace PyramidPanic
         //LoadContent
         public void LoadContent()
         {
-
+            textureMenneke = Content.Load<Texture2D>("./MENNEKE/explorer");
+            menneke = new Menneke(textureMenneke, 100, 100, Keys.S, Keys.W, Keys.A, Keys.D);
         }
         //update
         public void Update()
         {
-
+           
         }
         //draw methode
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw()
         {
-            spriteBatch.Draw(Content.Load<Texture2D>("./Background/background"), new Rectangle(0, 0, 640, 480), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("./Background/background2"), new Rectangle(0, 0, 640, 480), Color.White);
+            menneke.Draw(spriteBatch);
         }
     }
 }
