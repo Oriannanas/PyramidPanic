@@ -27,7 +27,7 @@ namespace PyramidPanic
 
         }
         //LoadContent
-        public void LoadContent()
+        public void LoadContent(ContentManager Content)
         {
             textureMenneke = Content.Load<Texture2D>("./MENNEKE/explorer");
             menneke = new Menneke(textureMenneke, 100, 100, Keys.S, Keys.W, Keys.A, Keys.D);
@@ -38,7 +38,7 @@ namespace PyramidPanic
            
         }
         //draw methode
-        public void Draw()
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager Content)
         {
             spriteBatch.Draw(Content.Load<Texture2D>("./Background/background2"), new Rectangle(0, 0, 640, 480), Color.White);
             menneke.Draw(spriteBatch);
