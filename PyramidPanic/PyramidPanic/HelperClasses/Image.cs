@@ -43,7 +43,7 @@ namespace PyramidPanic
             this.texture = game.Content.Load<Texture2D>(pathNameAsset);
             //deze rectangle neemt de in de constructor opgegeven positie aan en neemt de grootte van het plaatje aan
             this.rect = new Rectangle(  (int)position.X,
-                                        (int)position.X,
+                                        (int)position.Y,
                                         this.texture.Width,
                                         this.texture.Height);            
         }
