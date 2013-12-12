@@ -71,6 +71,10 @@ namespace PyramidPanic
         {
             get { return this.gameEndScene; }
         }
+        public SpriteBatch SpriteBatch
+        {
+            get { return this.spriteBatch; }
+        }
         #endregion
 
 

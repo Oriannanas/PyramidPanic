@@ -16,6 +16,7 @@ namespace PyramidPanic
     {
         //Fields
         private PyramidPanic game;
+        private Image background;
 
         //Constructor
         public StartScene(PyramidPanic game)
@@ -34,6 +35,7 @@ namespace PyramidPanic
         //LoadContent
         public void LoadContent()
         {
+            this.background = new Image(this.game, "Background/Background", new Vector2(0,0));
 
         }
 
