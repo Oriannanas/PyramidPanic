@@ -11,37 +11,46 @@ using Microsoft.Xna.Framework.Media;
 
 namespace PyramidPanic
 {
-    class PlayScene
+    public class PlayScene : IGameState
     {
-        //fields
-        private Texture2D textureMenneke;
-        private Menneke menneke;
-        //constructors
-        public PlayScene()
-        {
+        //Fields
+        private PyramidPanic game;
 
+        //Constructor
+        public PlayScene(PyramidPanic game)
+        {
+            this.game = game;
+            this.Initialize();
         }
-        //initialize
+
+        //Initialize
         public void Initialize()
         {
+            this.LoadContent();
+        }
+
+
+        //LoadContent
+        public void LoadContent()
+        {
 
         }
-        //LoadContent
-        public void LoadContent(ContentManager Content)
+
+
+        //Update
+        public void Update(GameTime gameTime)
         {
-            textureMenneke = Content.Load<Texture2D>("./MENNEKE/explorer");
-            menneke = new Menneke(textureMenneke, 100, 100, Keys.S, Keys.W, Keys.A, Keys.D);
+            if (Input.EdgeDetectKeyDown(Keys.Right))
+            {
+                this.game.GameState = this.game.HelpScene;
+            }
         }
-        //update
-        public void Update()
+
+        //Draw
+        public void Draw(GameTime gameTime)
         {
-           
+            this.game.GraphicsDevice.Clear(Color.Blue);
         }
-        //draw methode
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager Content)
-        {
-            spriteBatch.Draw(Content.Load<Texture2D>("./Background/background2"), new Rectangle(0, 0, 640, 480), Color.White);
-            menneke.Draw(spriteBatch);
-        }
+
     }
 }
