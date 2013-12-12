@@ -107,8 +107,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameScenes\MenuScene\MenuScene.cs" />
+    <Compile Include="GameScenes\GameEndScene\GameEndScene.cs" />
+    <Compile Include="GameScenes\GameOverScene\GameOverScene.cs" />
+    <Compile Include="GameScenes\HelpScene\HelpScene.cs" />
+    <Compile Include="GameScenes\StartScene\StartScene.cs" />
     <Compile Include="GameScenes\PlayScene\PlayScene.cs" />
+    <Compile Include="Game\IGameState.cs" />
     <Compile Include="Menneke.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game\Program.cs" />
