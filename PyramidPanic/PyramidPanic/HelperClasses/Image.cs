@@ -15,8 +15,6 @@ namespace PyramidPanic
     {
 
         #region fields
-
-        #endregion
         //fields of ookwel genaamd class variables, staan boven aan een class en zijn over het algemeen alleen beschikbaar binnen die class
         //hier worden de fields aangemaakt
 
@@ -26,6 +24,8 @@ namespace PyramidPanic
         private Texture2D texture;
         //met deze rectangle geven we het plaatje een locatie en grootte
         private Rectangle rect;
+        #endregion
+        
 
         #region properties
 
