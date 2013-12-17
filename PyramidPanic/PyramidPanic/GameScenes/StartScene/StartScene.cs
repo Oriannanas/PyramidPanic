@@ -16,8 +16,16 @@ namespace PyramidPanic
     {
         //Fields
         private PyramidPanic game;
-        private Image background, title;
+
+        // Stap1: maak een variabele (reference) aan van de class, bedenk een goede passende naam
+        private Image background;
+
+        // Maak een variabele aan genaamd title, deze is van het type Image
+        private Image title;
+
         private Menu menu;
+
+
 
         //Constructor
         public StartScene(PyramidPanic game)
@@ -36,8 +44,11 @@ namespace PyramidPanic
         //LoadContent
         public void LoadContent()
         {
-            this.background = new Image(this.game, "Background/Background", new Vector2(0,0));
-            this.title = new Image(this.game, "Menu/Title", new Vector2(100, 30));
+            this.background = new Image(this.game, @"Background\Background", Vector2.Zero);
+
+            // Maak een object aan van het type Image
+            this.title = new Image(this.game, @"Menu\Title", new Vector2(100f, 20f));
+
             this.menu = new Menu(this.game);
         }
 
@@ -45,18 +56,16 @@ namespace PyramidPanic
         //Update
         public void Update(GameTime gameTime)
         {
-            if (Input.EdgeDetectKeyDown(Keys.Right))
-            {
-                this.game.GameState = this.game.PlayScene;
-            }
+            // Roep de Update(gameTime) methode aan van het this.menu object
+            this.menu.Update(gameTime);
         }
 
         //Draw
         public void Draw(GameTime gameTime)
         {
+            this.game.GraphicsDevice.Clear(Color.Red);
             this.background.Draw(gameTime);
             this.title.Draw(gameTime);
-            this.game.GraphicsDevice.Clear(Color.Red);
             this.menu.Draw(gameTime);
         }
     }

@@ -13,55 +13,64 @@ namespace PyramidPanic
 {
     public class Image
     {
+        #region Fields
+        /* fields zijn private en zijn alleen beschikbaar binnen de class. Ze worden ook wel
+         * class variables genoemd*/
 
-        #region fields
-        //fields of ookwel genaamd class variables, staan boven aan een class en zijn over het algemeen alleen beschikbaar binnen die class
-        //hier worden de fields aangemaakt
-
-        //dit is de field die de methods uit de game class op kan vragen
-        private PyramidPanic game;
-        //met een texture 2D kun je een plaatje maken
+        /* Met een Texture2D kun je een plaatje zichtbaar maken. Is eigenlijk een soort houten
+         * bord waar je een poster op kunt plakken
+         */
         private Texture2D texture;
-        //met deze rectangle geven we het plaatje een locatie en grootte
-        private Rectangle rect;
+
+        /* De rectangle gebruiken we voor collisiondetection 
+         */
+        private Rectangle rectangle;
+
+        // De game instantie wordt als field geregistreerd
+        private PyramidPanic game;
+
+        // We maken een variabele van het type Color en geven het de standaardwaarde Color.White
+        private Color color = Color.White;
+
         #endregion
-        
 
-        #region properties
-
+        #region Properties
+        public Color Color
+        {
+            set { this.color = value; }
+        }
         #endregion
 
         #region Constructor
-        //dit is de constructor van deze class hierin word gevraagd naar welke game gebruikt moet worden,
-        //welk plaatje er gebruikt moet worden uit het content mapje (pathNameAsset), en de positie van het aangemaakte plaatje)
+        /* Dit is de constructor van de Image class. Hij is meestal public, heeft
+         * dezelfde naam als de class en heeft geen returntype.
+         */
 
         public Image(PyramidPanic game, string pathNameAsset, Vector2 position)
         {
-            //we zorgen ervoor dat de field game gelijk is aan de aan de constructor opgegeven game
+            // Geef de het game object mee aan het field this.game
             this.game = game;
-            //hier word het plaatje geladen
             this.texture = game.Content.Load<Texture2D>(pathNameAsset);
-            //deze rectangle neemt de in de constructor opgegeven positie aan en neemt de grootte van het plaatje aan
-            this.rect = new Rectangle(  (int)position.X,
-                                        (int)position.Y,
-                                        this.texture.Width,
-                                        this.texture.Height);            
+            this.rectangle = new Rectangle((int)position.X,
+                                           (int)position.Y,
+                                           this.texture.Width,
+                                           this.texture.Height);
+
         }
         #endregion
+
 
         #region Update
-        public void Update()
+
+        #endregion
+
+
+        #region Draw
+        public void Draw(GameTime gameTime)
         {
+            this.game.SpriteBatch.Draw(this.texture, this.rectangle, this.color);
         }
         #endregion
 
-        #region Draw
-        // de draw method van deze class
-        public void Draw(GameTime gameTime)
-        {
-            //hier wordt gezorgd dat elk plaatje dat opgevraagd is via deze Image class ook word getekent op het scherm op de plek die aangegeven is
-            this.game.SpriteBatch.Draw(texture, rect, Color.White);
-        }
-        #endregion
     }
 }

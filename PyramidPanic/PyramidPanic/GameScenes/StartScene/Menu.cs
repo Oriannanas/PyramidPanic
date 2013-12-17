@@ -14,10 +14,25 @@ namespace PyramidPanic
     public class Menu
     {
         #region Fields
+        // We definieren een nieuw soort variabele, Button. Het is een enum.
+        private enum Button { Start, Load, Editor, Help, Scores, Quit };
+        //                      0      1    2        3       4     5
+        /* We maken nu een variabele aan van het type Button. Deze variabele kan maar 5 waarden
+         * aannemen. Namelijk Start, Load, Help, Scores, Quit. We kunnen natuurlijk altijd
+         * waarden toevoegen.
+         */
+        private Button buttonState = Button.Start;
+
+        // Definieer een kleur van de actieve knop
+        private Color activeColor = Color.Gold;
+
+        // game bevat de PyramidPanic instantie doorgegeven als argument aan de constructor
         private PyramidPanic game;
-        private Image startButton, helpButton, levelEditorButton, loadButton, quitButton/*, scoresButton*/;
-        private List<Image> buttons;
-        private int left = 10, space = 130, top = 440;
+        private Image startButton, loadButton, helpButton, scoresButton, quitButton, editorButton;
+
+        // Maak een List<Image> waar we Image objecten in kunnen stoppen, in dit geval de buttons
+        private List<Image> buttonList;
+        private int top = 430, left = 10, space = 105;
         #endregion
 
         #region Properties
@@ -29,9 +44,7 @@ namespace PyramidPanic
         public Menu(PyramidPanic game)
         {
             this.game = game;
-            this.buttons = new List<Image>();
             this.Initialize();
-            
         }
         #endregion
 
@@ -45,24 +58,126 @@ namespace PyramidPanic
         #region LoadContent
         public void LoadContent()
         {
-            this.buttons.Add(this.startButton = new Image(this.game, @"Menu\Button_start", new Vector2(this.left, this.top)));
-            this.buttons.Add(this.helpButton = new Image(this.game, @"Menu\Button_help", new Vector2(this.left + this.space,this.top)));
-            this.buttons.Add(this.levelEditorButton = new Image(this.game, @"Menu\Button_leveleditor", new Vector2(this.left + 2*this.space, this.top)));
-            this.buttons.Add(this.loadButton = new Image(this.game, @"Menu\Button_load", new Vector2(this.left + 3*this.space, this.top)));
-            this.buttons.Add(this.quitButton = new Image(this.game, @"Menu\Button_quit", new Vector2(this.left + 4*this.space, this.top)));
-            //this.scoresButton = new Image(this.game, @"Menu\Button_scores", new Vector2(this.left + 5*this.space, this.top));
+            this.startButton =
+                new Image(this.game, @"Menu\Button_start", new Vector2(this.left, this.top));
+            this.loadButton =
+                new Image(this.game, @"Menu\Button_load", new Vector2(this.left + this.space, this.top));
+            this.editorButton =
+                new Image(this.game, @"Menu\Button_leveleditor", new Vector2(this.left + 2 * this.space, this.top));
+            this.helpButton =
+                new Image(this.game, @"Menu\Button_help", new Vector2(this.left + 3 * this.space, this.top));
+            this.scoresButton =
+                new Image(this.game, @"Menu\Button_scores", new Vector2(this.left + 4 * this.space, this.top));
+            this.quitButton =
+                new Image(this.game, @"Menu\Button_quit", new Vector2(this.left + 5 * this.space, this.top));
+
+            this.startButton.Color = Color.Gold;
+            // Maak een nieuw object van het type List<Image>
+            this.buttonList = new List<Image>();
+
+            // Voeg nu de gemaakte Image objecten toe aan this.buttonList
+            this.buttonList.Add(this.startButton);
+            this.buttonList.Add(this.loadButton);
+            this.buttonList.Add(this.editorButton);
+            this.buttonList.Add(this.helpButton);
+            this.buttonList.Add(this.scoresButton);
+            this.buttonList.Add(this.quitButton);
         }
         #endregion
 
         #region Update
+        public void Update(GameTime gameTime)
+        {
+            // Als de right knop wordt ingedrukt....
+            if (Input.EdgeDetectKeyDown(Keys.Right))
+            {
+                // en de buttonState is kleiner dan Button.quit
+                if (this.buttonState < Button.Quit)
+                {
+                    // Zet alle knopkleuren op wit
+                    foreach (Image button in this.buttonList)
+                    {
+                        button.Color = Color.White;
+                    }
+                    // Verhoog de buttonState met 1
+                    this.buttonState++;
+                }
+            }
 
+            // Als de links knop wordt ingedrukt
+            if (Input.EdgeDetectKeyDown(Keys.Left))
+            {
+                // Als de buttonState groter is dan Button.Start
+                if (this.buttonState > Button.Start)
+                {
+                    // Maak alle knopkleuren wit
+                    foreach (Image button in this.buttonList)
+                    {
+                        button.Color = Color.White;
+                    }
+                    // Verlaag de buttonState met 1
+                    this.buttonState--;
+                }
+            }
+
+
+            // Maak een switch-case instructie voor het evalueren van de variabele this.buttonState
+            switch (this.buttonState)
+            {
+                case Button.Start:
+                    this.startButton.Color = this.activeColor;
+                    if (Input.EdgeDetectKeyDown(Keys.Enter))
+                    {
+                        this.game.GameState = this.game.PlayScene;
+                    }
+                    break;
+                case Button.Load:
+                    this.loadButton.Color = this.activeColor;
+                    if (Input.EdgeDetectKeyDown(Keys.Enter))
+                    {
+                        this.game.GameState = this.game.PlayScene;
+                    }
+                    break;
+                case Button.Editor:
+                    this.editorButton.Color = this.activeColor;
+                    if (Input.EdgeDetectKeyDown(Keys.Enter))
+                    {
+                        this.game.GameState = this.game.LevelEditorScene;
+                    }
+                    break;
+                case Button.Help:
+                    this.helpButton.Color = this.activeColor;
+                    if (Input.EdgeDetectKeyDown(Keys.Enter))
+                    {
+                        this.game.GameState = this.game.HelpScene;
+                    }
+                    break;
+                case Button.Scores:
+                    this.scoresButton.Color = this.activeColor;
+                    if (Input.EdgeDetectKeyDown(Keys.Enter))
+                    {
+                        this.game.GameState = this.game.PlayScene;
+                    }
+                    break;
+                case Button.Quit:
+                    this.quitButton.Color = this.activeColor;
+                    if (Input.EdgeDetectKeyDown(Keys.Enter))
+                    {
+                        this.game.GameState = this.game.PlayScene;
+                    }
+                    break;
+            }
+        }
         #endregion
 
 
         #region Draw
         public void Draw(GameTime gameTime)
         {
-            
+            foreach (Image button in this.buttonList)
+            {
+                button.Draw(gameTime);
+            }
         }
         #endregion
     }
