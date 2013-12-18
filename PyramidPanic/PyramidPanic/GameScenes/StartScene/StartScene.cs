@@ -56,6 +56,7 @@ namespace PyramidPanic
         //Update
         public void Update(GameTime gameTime)
         {
+
             // Roep de Update(gameTime) methode aan van het this.menu object
             this.menu.Update(gameTime);
         }

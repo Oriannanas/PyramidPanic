@@ -37,7 +37,12 @@ namespace PyramidPanic
         #region Properties
         public Color Color
         {
+            get { return this.color; }
             set { this.color = value; }
+        }
+        public Rectangle Rectangle
+        {
+            get {return this.rectangle; }
         }
         #endregion
 
