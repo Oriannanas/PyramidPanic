@@ -15,6 +15,8 @@ namespace PyramidPanic
     {
         //Fields
         private PyramidPanic game;
+        private Scorpion scorpion;
+        private Beetle beetle;
 
         //Constructor
         public PlayScene(PyramidPanic game)
@@ -33,7 +35,8 @@ namespace PyramidPanic
         //LoadContent
         public void LoadContent()
         {
-
+            this.scorpion = new Scorpion(this.game);
+            this.beetle = new Beetle(this.game);
         }
 
 
@@ -44,13 +47,18 @@ namespace PyramidPanic
             {
                 this.game.GameState = this.game.StartScene;
             }
+            this.scorpion.Update(gameTime);
+            this.beetle.Update(gameTime);
         }
 
         //Draw
         public void Draw(GameTime gameTime)
         {
             this.game.GraphicsDevice.Clear(Color.Blue);
+            this.scorpion.Draw(gameTime);
+            this.beetle.Draw(gameTime);
         }
+       
 
     }
 }
