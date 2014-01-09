@@ -160,13 +160,20 @@ namespace PyramidPanic
             }
             if (this.scores.Rectangle.Intersects(Input.MouseRect()))
             {
-                
+                if (Input.EdgeDetectMousePressLeft())
+                {
+                    this.game.GameState = this.game.GameOverScene;
+                }
                 this.ResetButtonColor();
                 this.buttonState = Button.Scores;
                 this.scores.Color = this.activeColor;
             }
             if (this.quit.Rectangle.Intersects(Input.MouseRect()))
             {
+                if (Input.EdgeDetectMousePressLeft())
+                {
+                    game.Exit();
+                }
                 
                 this.ResetButtonColor();
                 this.buttonState = Button.Quit;
