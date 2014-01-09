@@ -16,19 +16,29 @@ namespace PyramidPanic
         //fields van de Scorpion class
         private PyramidPanic game;
         private Texture2D texture;
+        private int speed = 2;
 
-        public PyramidPanic Game
-        {
-            get{return this.game;}
-        }
 
+        
         public Scorpion(PyramidPanic game) : base(game)
         {
-            this.game = game;
             this.texture = game.Content.Load<Texture2D>(@"Monsters\Scorpion");
         }
-        public void Update(GameTime gameTime)
+        public new void Update(GameTime gameTime)
         {
+            if (this.spriteRect.X > (640 - 32) || this.spriteRect.X < 0)
+            {
+                if (this.speed > 0)
+                {
+                    this.effect = SpriteEffects.FlipHorizontally;
+                }
+                else
+                {
+                    this.effect = SpriteEffects.None;
+                }
+                this.speed = this.speed * -1;
+            }
+            this.spriteRect.X += this.speed;
             base.Update(gameTime);
 
         }

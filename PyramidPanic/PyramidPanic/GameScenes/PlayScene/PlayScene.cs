@@ -17,6 +17,7 @@ namespace PyramidPanic
         private PyramidPanic game;
         private Scorpion scorpion;
         private Beetle beetle;
+        private Image background;
 
         //Constructor
         public PlayScene(PyramidPanic game)
@@ -37,6 +38,7 @@ namespace PyramidPanic
         {
             this.scorpion = new Scorpion(this.game);
             this.beetle = new Beetle(this.game);
+            this.background = new Image(this.game, @"Background\Background2", Vector2.Zero);
         }
 
 
@@ -55,8 +57,10 @@ namespace PyramidPanic
         public void Draw(GameTime gameTime)
         {
             this.game.GraphicsDevice.Clear(Color.Blue);
+            this.background.Draw(gameTime); 
             this.scorpion.Draw(gameTime);
             this.beetle.Draw(gameTime);
+            
         }
        
 

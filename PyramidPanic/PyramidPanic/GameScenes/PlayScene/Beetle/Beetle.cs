@@ -16,19 +16,29 @@ namespace PyramidPanic
         //fields van de Beetle class
         private PyramidPanic game;
         private Texture2D texture;
+        private int speed = 2;
 
-        public PyramidPanic Game
-        {
-            get{return this.game;}
-        }
-
+        
         public Beetle(PyramidPanic game) : base(game)
         {
-            this.game = game;
+            this.effect = SpriteEffects.FlipVertically;
             this.texture = game.Content.Load<Texture2D>(@"Monsters\Beetle");
         }
-        public void Update(GameTime gameTime)
+        public new void Update(GameTime gameTime)
         {
+            if (this.spriteRect.Y > (480 - 32) || this.spriteRect.Y < 0)
+            {
+                if (this.speed > 0)
+                {
+                    this.effect = SpriteEffects.None;
+                }
+                else
+                {
+                    this.effect = SpriteEffects.FlipVertically;
+                }
+                this.speed = this.speed * -1;
+            }
+            this.spriteRect.Y += this.speed;
             base.Update(gameTime);
 
         }

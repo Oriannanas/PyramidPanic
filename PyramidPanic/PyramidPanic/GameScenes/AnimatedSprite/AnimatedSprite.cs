@@ -23,7 +23,7 @@ namespace PyramidPanic
             this.game = game;
             this.sourceRect = new Rectangle(64, 0, 32, 32);
             this.spriteRect = new Rectangle(100, 200, 32, 32);
-            this.effect = SpriteEffects.FlipHorizontally;
+            this.effect = SpriteEffects.None;
         }
         public void Update(GameTime gameTime)
         {
