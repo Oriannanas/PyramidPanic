@@ -119,6 +119,7 @@
     <Compile Include="GameScenes\StartScene\Menu.cs" />
     <Compile Include="GameScenes\StartScene\StartScene.cs" />
     <Compile Include="GameScenes\PlayScene\PlayScene.cs" />
+    <Compile Include="GameScenes\ToetsScene\ToetsScene.cs" />
     <Compile Include="Game\IGameState.cs" />
     <Compile Include="HelperClasses\Image.cs" />
     <Compile Include="Input\Input.cs" />

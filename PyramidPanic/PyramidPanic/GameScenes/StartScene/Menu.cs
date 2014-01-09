@@ -152,7 +152,7 @@ namespace PyramidPanic
             {
                 if (Input.EdgeDetectMousePressLeft())
                 {
-                    this.game.GameState = this.game.HelpScene;
+                    this.game.GameState = this.game.ToetsScene;
                 }
                 this.ResetButtonColor();
                 this.buttonState = Button.Help;
@@ -207,7 +207,7 @@ namespace PyramidPanic
                     this.help.Color = this.activeColor;
                     if (Input.EdgeDetectKeyDown(Keys.Enter))
                     {
-                        this.game.GameState = this.game.HelpScene;
+                        this.game.GameState = this.game.ToetsScene;
                     }
                     break;
                 case Button.Scores:

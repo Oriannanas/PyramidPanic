@@ -39,6 +39,8 @@ namespace PyramidPanic
 
         //maak een variabele aan van het type QuitScene
         private QuitScene quitScene;
+
+        private ToetsScene toetsScene;
         /* De variabele die alle verschillende Scene-objecten kan bevatten is van het type 
          * IGameState. Dit is geen class, maar een nieuw objecttype Interface
          */
@@ -87,6 +89,10 @@ namespace PyramidPanic
         public QuitScene QuitScene
         {
             get { return this.quitScene; }
+        }
+        public ToetsScene ToetsScene
+        {
+            get { return this.toetsScene; }
         }
         #endregion
 
@@ -142,6 +148,8 @@ namespace PyramidPanic
 
             //maak een instantie aan van de class QuitScene
             this.quitScene = new QuitScene(this);
+
+            this.toetsScene = new ToetsScene(this);
 
             this.gameState = this.startScene;
         }
