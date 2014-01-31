@@ -40,8 +40,10 @@ namespace PyramidPanic
         //Update
         public void Update(GameTime gameTime)
         {
+            //als de knop naar rechts word ingedrukt
             if (Input.EdgeDetectKeyDown(Keys.Right))
             {
+                //veranderd de Gamestate naar StartScene
                 this.game.GameState = this.game.StartScene;
             }
         }
@@ -49,6 +51,7 @@ namespace PyramidPanic
         //Draw
         public void Draw(GameTime gameTime)
         {
+            //achtergrond kleur
             this.game.GraphicsDevice.Clear(Color.DarkOliveGreen);
         }
     }

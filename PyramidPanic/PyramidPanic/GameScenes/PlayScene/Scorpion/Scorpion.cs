@@ -1,50 +1,83 @@
 ﻿using System;
- using System.Collections.Generic;
- using System.Linq;
- using Microsoft.Xna.Framework;
- using Microsoft.Xna.Framework.Audio;
- using Microsoft.Xna.Framework.Content;
- using Microsoft.Xna.Framework.GamerServices;
- using Microsoft.Xna.Framework.Graphics;
- using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace PyramidPanic
 {
-    public class Scorpion : AnimatedSprite
+    public class Scorpion : IAnimatedSprite
     {
-        //fields van de Scorpion class
-        private PyramidPanic game;
-        private Texture2D texture;
+        // Fields
+        private Vector2 position;
         private int speed = 2;
+        private PyramidPanic game;
+        private IEntityState state;
+        private Texture2D texture;
+        private WalkLeft walkLeft;
+        private WalkRight walkRight;
 
-
-        
-        public Scorpion(PyramidPanic game) : base(game)
+        // Properties
+        public Vector2 Position
         {
-            this.texture = game.Content.Load<Texture2D>(@"Monsters\Scorpion");
+            get { return this.position; }
+            set { this.position = value; }
         }
-        public new void Update(GameTime gameTime)
+        public PyramidPanic Game
         {
-            if (this.spriteRect.X > (640 - 32) || this.spriteRect.X < 0)
-            {
-                if (this.speed > 0)
-                {
-                    this.effect = SpriteEffects.FlipHorizontally;
-                }
-                else
-                {
-                    this.effect = SpriteEffects.None;
-                }
-                this.speed = this.speed * -1;
-            }
-            this.spriteRect.X += this.speed;
-            base.Update(gameTime);
-
+            get { return this.game; }
         }
+        public int Speed
+        {
+            get { return this.speed; }
+        }
+        public IEntityState State
+        {
+            get { return this.state; }
+            set { this.state = value; }
+        }
+        public Texture2D Texture
+        {
+            get { return this.texture; }
+        }
+        public WalkRight WalkRight
+        {
+            get { return this.walkRight; }
+        }
+        public WalkLeft WalkLeft
+        {
+            get { return this.walkLeft; }
+        }
+
+
+        // Maak de constructor
+        public Scorpion(PyramidPanic game, Vector2 position, int speed)
+        {
+            //de variabele van de class worden gelijkt gezet aan wat aan de constructor is meegegeven
+            this.position = position;
+            this.game = game;
+            this.speed = speed;
+            //texture word geladen
+            this.texture = this.game.Content.Load<Texture2D>(@"Monsters\Scorpion");
+            //maakt nieuwe objecten aan voor de beweging classes
+            this.walkRight = new WalkRight(this);
+            this.walkLeft = new WalkLeft(this);
+            this.state = this.walkRight;
+        }
+        //update
+        public void Update(GameTime gameTime)
+        {
+            this.state.Update(gameTime);
+        }
+        //draw
         public void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime, this.texture);
+            this.state.Draw(gameTime);
         }
     }
 }

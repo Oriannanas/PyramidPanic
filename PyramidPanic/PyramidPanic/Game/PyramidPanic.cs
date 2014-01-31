@@ -118,7 +118,7 @@ namespace PyramidPanic
             //Veranderd de hoogte van het canvas
             this.graphics.PreferredBackBufferHeight = 480;
 
-            // Past de veranderingen betreffende het canvas toe
+            // Past de graphische veranderingen aan
             this.graphics.ApplyChanges();
             base.Initialize();
         }
@@ -128,27 +128,28 @@ namespace PyramidPanic
         {
             this.spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // Maak een instantie aan van de class StartScene
+            //we maken een instantie aan van de class StartScene
             this.startScene = new StartScene(this);
 
-            // Maak een instantie aan van de class StartScene
+            //we maken een instantie aan van de class StartScene
             this.playScene = new PlayScene(this);
 
-            // Maak een instantie aan van de class GameOverScene
+            //we maken een instantie aan van de class GameOverScene
             this.gameOverScene = new GameOverScene(this);
 
-            // Maak een instantie aan van de class HelpScene
+            //we maken een instantie aan van de class HelpScene
             this.helpScene = new HelpScene(this);
 
-            // Maak een instantie aan van de class GameEndScene
+            //we maken een instantie aan van de class GameEndScene
             this.gameEndScene = new GameEndScene(this);
 
-            // Maak een instantie aa van de class LevelEditorScene
+            //we maken een instantie aan van de class LevelEditorScene
             this.levelEditorScene = new LevelEditorScene(this);
 
-            //maak een instantie aan van de class QuitScene
+            //we maken een instantie aan van de class QuitScene
             this.quitScene = new QuitScene(this);
 
+            //we maken een instantie aan van de class ToetsScene
             this.toetsScene = new ToetsScene(this);
 
             this.gameState = this.startScene;

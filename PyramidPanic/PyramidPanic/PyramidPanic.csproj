@@ -108,13 +108,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameScenes\AnimatedSprite\AnimatedSprite.cs" />
+    <Compile Include="GameScenes\AnimatedSprite\IAnimatedSprite.cs" />
     <Compile Include="GameScenes\GameEndScene\GameEndScene.cs" />
     <Compile Include="GameScenes\GameOverScene\GameOverScene.cs" />
     <Compile Include="GameScenes\HelpScene\HelpScene.cs" />
     <Compile Include="GameScenes\LevelEditorScene\LevelEditorScene.cs" />
     <Compile Include="GameScenes\PlayScene\Beetle\Beetle.cs" />
+    <Compile Include="GameScenes\PlayScene\Beetle\WalkDown.cs" />
+    <Compile Include="GameScenes\PlayScene\Beetle\WalkUp.cs" />
+    <Compile Include="GameScenes\PlayScene\IEntityState.cs" />
     <Compile Include="GameScenes\PlayScene\MENNEKE\Menneke.cs" />
+    <Compile Include="GameScenes\PlayScene\MENNEKE\MennekeIdle.cs" />
+    <Compile Include="GameScenes\PlayScene\MENNEKE\MennekeIdleWalk.cs" />
+    <Compile Include="GameScenes\PlayScene\MENNEKE\MennekeWalkDown.cs" />
+    <Compile Include="GameScenes\PlayScene\MENNEKE\MennekeWalkLeft.cs" />
+    <Compile Include="GameScenes\PlayScene\MENNEKE\MennekeWalkRight.cs" />
+    <Compile Include="GameScenes\PlayScene\MENNEKE\MennekeWalkUp.cs" />
     <Compile Include="GameScenes\PlayScene\Scorpion\Scorpion.cs" />
+    <Compile Include="GameScenes\PlayScene\Scorpion\WalkLeft.cs" />
+    <Compile Include="GameScenes\PlayScene\Scorpion\WalkRight.cs" />
     <Compile Include="GameScenes\QuitScene\QuitScene.cs" />
     <Compile Include="GameScenes\StartScene\Menu.cs" />
     <Compile Include="GameScenes\StartScene\StartScene.cs" />

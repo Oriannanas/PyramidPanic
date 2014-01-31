@@ -1,50 +1,83 @@
 ﻿using System;
- using System.Collections.Generic;
- using System.Linq;
- using Microsoft.Xna.Framework;
- using Microsoft.Xna.Framework.Audio;
- using Microsoft.Xna.Framework.Content;
- using Microsoft.Xna.Framework.GamerServices;
- using Microsoft.Xna.Framework.Graphics;
- using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace PyramidPanic
 {
-    public class Beetle : AnimatedSprite
+    public class Beetle : IAnimatedSprite
     {
-        //fields van de Beetle class
-        private PyramidPanic game;
-        private Texture2D texture;
+        // Fields
+        private Vector2 position;
         private int speed = 2;
+        private PyramidPanic game;
+        private IEntityState state;
+        private Texture2D texture;
+        private WalkUp walkUp;
+        private WalkDown walkDown;
 
-        
-        public Beetle(PyramidPanic game) : base(game)
+        // Properties
+        public Vector2 Position
         {
-            this.effect = SpriteEffects.FlipVertically;
-            this.texture = game.Content.Load<Texture2D>(@"Monsters\Beetle");
+            get { return this.position; }
+            set { this.position = value; }
         }
-        public new void Update(GameTime gameTime)
+        public PyramidPanic Game
         {
-            if (this.spriteRect.Y > (480 - 32) || this.spriteRect.Y < 0)
-            {
-                if (this.speed > 0)
-                {
-                    this.effect = SpriteEffects.None;
-                }
-                else
-                {
-                    this.effect = SpriteEffects.FlipVertically;
-                }
-                this.speed = this.speed * -1;
-            }
-            this.spriteRect.Y += this.speed;
-            base.Update(gameTime);
+            get { return this.game; }
+        }
+        public int Speed
+        {
+            get { return this.speed; }
+        }
+        public IEntityState State
+        {
+            get { return this.state; }
+            set { this.state = value; }
+        }
+        public Texture2D Texture
+        {
+            get { return this.texture; }
+        }
+        public WalkDown WalkDown
+        {
+            get { return this.walkDown; }
+        }
+        public WalkUp WalkUp
+        {
+            get { return this.walkUp; }
+        }
 
+
+        // Maak de constructor
+        public Beetle(PyramidPanic game, Vector2 position, int speed)
+        {
+            //de variabele van de class worden gelijkt gezet aan wat aan de constructor is meegegeven
+            this.position = position;
+            this.game = game;
+            this.speed = speed;
+            //texture word opgehaald
+            this.texture = this.game.Content.Load<Texture2D>(@"Monsters\Beetle");
+            //maakt nieuwe objecten aan voor de beweging classes
+            this.walkDown = new WalkDown(this);
+            this.walkUp = new WalkUp(this);
+            this.state = this.walkDown;
         }
+        //update method
+        public void Update(GameTime gameTime)
+        {
+            this.state.Update(gameTime);
+        }
+        //draw method
         public void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime, this.texture);
+            this.state.Draw(gameTime);
         }
     }
 }

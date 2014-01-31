@@ -44,6 +44,10 @@ namespace PyramidPanic
         {
             return (ks.IsKeyDown(key) && oks.IsKeyUp(key));
         }
+        public static bool EdgeDetectKeyUp(Keys key)
+        {
+            return (ks.IsKeyUp(key) && oks.IsKeyDown(key));
+        }
 
         // Dit is een edgedetector voor het indrukken van de linkermuisknop
         public static bool EdgeDetectMousePressLeft()
@@ -70,6 +74,7 @@ namespace PyramidPanic
         {
             return (ks.IsKeyUp(key));
         }
+        
 
         public static Vector2 MousePosition()
         {

@@ -20,6 +20,7 @@ namespace PyramidPanic
         public GameOverScene(PyramidPanic game)
         {
             this.game = game;
+            //roep de initialize aan
             this.Initialize();
         }
 
@@ -40,8 +41,10 @@ namespace PyramidPanic
         //Update
         public void Update(GameTime gameTime)
         {
+            //als de B toets word in gedruk
             if (Input.EdgeDetectKeyDown(Keys.B))
             {
+                //veranderd de GameState naar StartScene
                 this.game.GameState = this.game.StartScene;
             }
         }
@@ -49,6 +52,7 @@ namespace PyramidPanic
         //Draw
         public void Draw(GameTime gameTime)
         {
+            //achtergrond kleur
             this.game.GraphicsDevice.Clear(Color.Yellow);
         }
     }
